@@ -30,12 +30,25 @@ public class ProductService {
     }
 
     public Collection<Product> getAllProduct() {
-        ProductFilter filter = new ProductFilter(null);
+        return inventoryRepository.findAll();
+    }
 
+    public Collection<Product> getAllProductWithoutRecalled(){
+        ProductFilter filter = new ProductFilter(recalledProductRepository.findAll());
         return filter.removeRecalledFrom(inventoryRepository.findAll());
     }
 
     public Optional<Product> findById(Integer id) {
         return inventoryRepository.findById(id);
+    }
+
+    public Optional<Product> updateById(Integer id){
+        Optional<Product> target = this.findById(id);
+        return target;
+    }
+
+    public Optional<Product> deleteById(Integer id){
+        Optional<Product> target = this.findById(id);
+        return target;
     }
 }
