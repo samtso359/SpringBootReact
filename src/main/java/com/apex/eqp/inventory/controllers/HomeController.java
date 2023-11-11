@@ -11,7 +11,7 @@ public class HomeController {
 
     @GetMapping
     public String home(){
-        return "This is root page of Spring Web APP";
+        return "This is home page of Spring Web APP!";
     }
     
 }
