@@ -32,7 +32,9 @@ public class ProductFilter {
     public List<Product> searchByName(Collection<Product> allProduct, String name){
         return allProduct.stream().filter(p-> p.getName().contains(name)).collect(Collectors.toList());
     }
-
+    public List<Product> searchByNameWithoutRecalled(Collection<Product> allProduct, String name){
+        return allProduct.stream().filter(p-> p.getName().contains(name) && filterByName(p)).collect(Collectors.toList());
+    }
 
     private static boolean filterByName(Product product) {
         return !recalledProductsStrings.contains(product.getName())?true : false ;

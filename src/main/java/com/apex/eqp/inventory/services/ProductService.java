@@ -13,12 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static java.util.function.Predicate.not;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +21,7 @@ public class ProductService {
 
     private final InventoryRepository inventoryRepository;
     private final RecalledProductRepository recalledProductRepository;
-
+    ProductFilter filter = new ProductFilter();
     @Transactional
     public Product save(Product product) {
         return inventoryRepository.save(product);
@@ -37,13 +32,21 @@ public class ProductService {
     }
 
     public Collection<Product> getAllProductWithoutRecalled(){
-        ProductFilter filter = new ProductFilter(recalledProductRepository.findAll());
+        filter = new ProductFilter(recalledProductRepository.findAll());
         return filter.removeRecalledFrom(inventoryRepository.findAll());
     }
 
     public Collection<Product> searchProductByName(String name){
-        ProductFilter filter = new ProductFilter();
+     
         return filter.searchByName(inventoryRepository.findAll(), name);
+        // return inventoryRepository.findByName(name);
+    }
+
+    public Collection<Product> searchProductByNameWithoutRecalled(String name){
+        filter = new ProductFilter(recalledProductRepository.findAll());
+
+        return filter.searchByNameWithoutRecalled(inventoryRepository.findAll(), name);
+        // return filter.searchByName(getAllProductWithoutRecalled(), name);
     }
 
     public Optional<Product> findById(Integer id) {

@@ -31,16 +31,6 @@ public class Product {
         return id != null && Objects.equals(id, product.id);
     }
 
-    // public void setName(String name){
-    //     this.name = name;
-    // }
-    // public void setPrice(Double price){
-    //     this.price = price;
-    // }
-    // public void setQuantity(int quantity){
-    //     this.quantity  = quantity;
-    // }
-
     @Override
     public int hashCode() {
         return getClass().hashCode();

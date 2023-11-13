@@ -48,10 +48,16 @@ public class InventoryController {
 
     }
 
-    @GetMapping("/searchByName/{name}")
+    @GetMapping("/searchAllByName/{name}")
     public ResponseEntity<Collection<Product>> searchProductByName(@PathVariable String name){
         return ResponseEntity.ok(productService.searchProductByName(name));
     }
+
+    @GetMapping("/searchByName/{name}")
+    public ResponseEntity<Collection<Product>> searchProductByNameWithoutRecalled(@PathVariable String name){
+        return ResponseEntity.ok(productService.searchProductByNameWithoutRecalled(name));
+    }
+
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
