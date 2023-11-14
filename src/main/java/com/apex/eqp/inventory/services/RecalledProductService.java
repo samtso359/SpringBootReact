@@ -1,8 +1,6 @@
 package com.apex.eqp.inventory.services;
 
-import com.apex.eqp.inventory.entities.Product;
 import com.apex.eqp.inventory.entities.RecalledProduct;
-import com.apex.eqp.inventory.helpers.ProductFilter;
 import com.apex.eqp.inventory.helpers.RecalledProductFilter;
 import com.apex.eqp.inventory.repositories.RecalledProductRepository;
 import lombok.RequiredArgsConstructor;

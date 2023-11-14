@@ -11,14 +11,16 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductFilter {
 
     private static Set<String> recalledProductsStrings;
 
     // public ProductFilter(Set<String> recalledProducts) {
-    public ProductFilter(){
-    }
+    // public ProductFilter(){
+    // }
     public ProductFilter(Collection<RecalledProduct> recalledProducts) {
         recalledProductsStrings = new HashSet<String>();
         recalledProducts.forEach(rp->recalledProductsStrings.add(rp.getName()));
